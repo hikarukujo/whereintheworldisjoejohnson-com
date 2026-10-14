@@ -57,7 +57,13 @@ const App = () => {
               scrollWheelZoom={false}
               style={{ height: '100%', width: '100%' }}
             >
-              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {/* OSM's tile policy requires attribution and a Referer header; Helmet's
+                  site-wide no-referrer policy would otherwise get these tiles blocked. */}
+              <TileLayer
+                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
               <Marker position={state.data.coordinates ?? DEFAULT_COORDINATES} icon={customIcon}>
                 <Tooltip permanent direction="left" offset={[-11, 39]} opacity={1}>
                   {[state.data.place?.city, state.data.place?.state].filter(Boolean).join(', ')}

@@ -21,7 +21,7 @@ app.use(
         imgSrc: [
           "'self'",
           'data:',
-          'https://*.tile.openstreetmap.org',
+          'https://tile.openstreetmap.org',
           'https://www.googletagmanager.com',
           'https://www.google-analytics.com',
         ],
